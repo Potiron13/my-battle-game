@@ -1,0 +1,31 @@
+<div class="battle-screen">
+    <img class="background" src="assets/battle-bg.jpg" alt="Battle Background">
+    
+    <!-- Opponent's Pokemon -->
+    <div class="pokemon opponent">
+      <div class="info">
+        <h3>{{ opponent.name }} (Lv. {{ opponent.level }})</h3>
+        <div class="health-bar">
+          <div class="health" [style.width.%]="(opponent.hp / opponent.maxHp) * 100"></div>
+        </div>
+      </div>
+      <img class="pokemon-img" [src]="opponent.image" alt="Opponent Pokemon">
+    </div>
+    
+    <!-- Player's Pokemon -->
+    <div class="pokemon player">
+      <img class="pokemon-img" [src]="player.image" alt="Player Pokemon">
+      <div class="info">
+        <h3>{{ player.name }} (Lv. {{ player.level }})</h3>
+        <div class="health-bar">
+          <div class="health" [style.width.%]="(player.hp / player.maxHp) * 100"></div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Text Area for Messages -->
+    <div class="battle-text">
+      <p>{{ battleMessage }}</p>
+    </div>
+  </div>
+  

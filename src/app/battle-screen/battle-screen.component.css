@@ -1,0 +1,48 @@
+.battle-screen {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+  }
+  
+  .pokemon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .pokemon-img {
+    width: 150px;
+  }
+  
+  .health-bar {
+    width: 100px;
+    height: 10px;
+    background: red;
+    border: 1px solid black;
+  }
+  
+  .health {
+    height: 100%;
+    background: green;
+  }
+  
+  .battle-text {
+    width: 80%;
+    background: white;
+    padding: 10px;
+    border: 2px solid black;
+  }
+  
