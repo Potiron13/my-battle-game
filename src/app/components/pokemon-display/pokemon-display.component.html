@@ -1,0 +1,10 @@
+<div class="pokemon">
+    <img class="pokemon-img" [src]="pokemon.image" alt="{{ pokemon.name }}">
+    <div class="info">
+      <h3>{{ pokemon.name }} (Lv. {{ pokemon.level }})</h3>
+      <div class="health-bar">
+        <div class="health" [style.width.%]="(pokemon.hp / pokemon.maxHp) * 100"></div>
+      </div>
+    </div>
+  </div>
+  

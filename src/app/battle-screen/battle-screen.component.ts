@@ -1,46 +1,44 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { PokemonService } from '../services/pokemon.service';
+import { Pokemon } from '../models/pokemon';
+import { PokemonDisplayComponent } from '../components/pokemon-display/pokemon-display.component';
 
 @Component({
   selector: 'app-battle-screen',
   templateUrl: './battle-screen.component.html',
-  styleUrls: ['./battle-screen.component.css']
+  styleUrls: ['./battle-screen.component.css'],
+  imports: [PokemonDisplayComponent]
 })
 export class BattleScreenComponent implements OnInit {
-  player = {
+  player: Pokemon = {
     name: 'Pikachu',
     level: 12,
     hp: 35,
     maxHp: 35,
-    image: '' // Will be loaded dynamically
+    image: ''
   };
 
-  opponent = {
+  opponent: Pokemon = {
     name: 'Charmander',
     level: 10,
     hp: 30,
     maxHp: 30,
-    image: '' // Will be loaded dynamically
+    image: ''
   };
 
   battleMessage = 'A wild Charmander appeared!';
 
-  constructor(private http: HttpClient) {}
+  constructor(private pokemonService: PokemonService) {}
 
   ngOnInit(): void {
-    this.loadPokemonImage('pikachu', 'player');
-    this.loadPokemonImage('charmander', 'opponent');
+    this.loadPokemonData();
   }
 
-  loadPokemonImage(pokemonName: string, role: 'player' | 'opponent') {
-    this.http.get<any>(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
-      .subscribe(response => {
-        const imageUrl = response.sprites.front_default;
-        if (role === 'player') {
-          this.player.image = imageUrl;
-        } else {
-          this.opponent.image = imageUrl;
-        }
-      });
+  loadPokemonData(): void {
+    this.pokemonService.getPokemonImage(this.player.name)
+      .subscribe(imageUrl => this.player.image = imageUrl);
+
+    this.pokemonService.getPokemonImage(this.opponent.name)
+      .subscribe(imageUrl => this.opponent.image = imageUrl);
   }
 }
